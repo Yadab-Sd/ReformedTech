@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> NewsApi 10 Headlines </title>
+    <style media="screen">
+      body{
+        font-family: 'Source Sans';
+      }
+      li{
+        line-height: 1.5rem;
+        margin-left: 1rem;
+        list-style-position: outside;
+      }
+      h1{
+        padding: 1rem 1.5rem;
+        border: 1px solid #eee;
+        display: inline-block;
+        color: #55a;;
+        background: #eeeefa;
+      }
+    </style>
+  </head>
+  <body>
+
+    <ol id="headlines" type="1">
+       <h1> TOP 10 HEADLINES </h1>
+    </ol>
+
+    <script type="text/javascript">
+
+        var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=f75deb693c244a06a0a31b91f22b2a96';
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then((data) => {
+
+            for (let i = 0; i < 10; i++ ){
+
+              let li = document.createElement('li');
+              let span = document.createElement('span');
+
+              span.innerHTML = `${data.articles[i].title}`;
+
+              li.appendChild(span)
+              document.getElementById('headlines').appendChild(li);
+
+            }
+
+        })
+
+  .catch(function(error) {
+    console.log(error);
+  });
+    </script>
+  </body>
+</html>
