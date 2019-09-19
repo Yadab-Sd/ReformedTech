@@ -1,25 +1,25 @@
 <?php
 
   $conn = new mysqli("localhost", "root", "", "reformedtech");
-  $obj = $conn -> query("SELECT campaign.id,
-                                campaign.name,
-                                lander.id,
-                                conversations.revenue
+  $obj = $conn -> query("SELECT campaigns.id,
+                                campaigns.name,
+                                landers.id,
+                                conversions.revenue
                           FROM
-                                conversations
-                          JOIN campaign,
-                               lander
+                                conversions
+                          JOIN campaigns,
+                               landers
                           WHERE 1
                           ");
 
   $obj2 = $conn -> query("SELECT
-                                sum(conversations.revenue)
+                                sum(conversions.revenue)
                           FROM
-                                conversations
+                                conversions
                           WHERE 1
                           ");
 
-  $count = $conn -> query("SELECT * FROM lander");
+  $count = $conn -> query("SELECT * FROM landers");
 
   
   print_r($obj2 -> fetch_array()[0]);
